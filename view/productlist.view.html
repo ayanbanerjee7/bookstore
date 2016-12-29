@@ -1,0 +1,39 @@
+<div class="row" ng-controller="ProductController">
+    	<div class="col-md-12">
+            <div class="panel with-nav-tabs panel-default">
+                <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li ng-class="{active: tab == 'all'}"><a href="#/productlist/all/name" data-toggle="tab">All Products</a></li>
+                            <li ng-class="{active: tab == '{{category}}'}" ng-repeat="category in categoryList" ng-click="setTab(category)">
+                              <a href="#/productlist/{{category}}/name" data-toggle="tab">{{category}}</a>
+                            </li>       
+                        </ul>
+                </div>
+                <div class="panel-body">
+                    
+                      <div class="tab-content col-md-10 col-sm-8 left-content">
+                          <div class="tab-pane fade in active" id="tab1default">
+                            <ul class="products-list">
+                              
+                             <li ng-repeat="product in productlist | unique:'id'" title="{{product.name}}">
+                                <a href="#" class="product-photo"><img ng-if="!product.image" ng-src="images/product_default.png" height="130" width="140" alt="{{product.name}}"><img ng-if="product.image" ng-src="images/products/{{product.image}}" height="130" width="140" alt="{{product.name}}"></a>
+                                <h2><a href="#"> {{product.name}}</a></h2>
+                                <p class="product-price">Price: ${{product.price}}</p>
+                                <div class="highlight"></div>
+                            </li>
+                            </ul>
+                          </div>
+                      </div>
+                    
+                     <div class="tab-content col-md-2 col-sm-4 filter right-content">
+                       <ul class="product-filters">
+                         <li><span>Filter by:</span></li>
+                          <li><a href="#{{location}}/name">Alphabetically</a></li>
+                          <li><a href="#{{location}}/price">Price: Low to High</a></li>
+                          <li><a href="#{{location}}/price-desc">Price: High to Low</a></li>
+                       </ul>
+                     </div>   
+                </div>
+            </div>
+      </div>
+	</div>
